@@ -11,7 +11,7 @@ app.get('/api', (req, res) => {
 });
 
 app.post('/api/posts', verifyToken, (req, res) => {
-    let publicKey = fs.readFileSync('public.key');
+    let publicKey = fs.readFileSync('pem/public.key');
     jwt.verify(req.token, publicKey, (err, authData) => {
         if(err || !authData.user.roles.includes('employee')){
             res.sendStatus(403);
